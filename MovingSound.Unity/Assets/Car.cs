@@ -5,13 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Car : MonoBehaviour
 {
-    [Range(0, 10)]
+    [Range(5, 25)]
     public float Speed;
-
-    [Range(0, 5)]
-    public float TimeToDeath;
-
-    private float timer = 0.0f;
 
     private void OnEnable()
     {
@@ -30,23 +25,16 @@ public class Car : MonoBehaviour
     private void Start()
     {
         //Drive
-        StartCoroutine("DriveAndDie");
+        StartCoroutine("Drive");
     }
 
-    IEnumerator DriveAndDie()
+    IEnumerator Drive()
     {
         yield return new WaitUntil(() =>
         {
-            if (this.timer >= this.TimeToDeath)
-            {
-                return true;
-            }
-            this.timer += Time.deltaTime;
             this.transform.position += this.transform.forward * this.Speed * Time.deltaTime;
             return false;
         });
-        //GameObject.Destroy(this);
-        yield return null;
     }
 
 }

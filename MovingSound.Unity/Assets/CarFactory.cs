@@ -12,6 +12,7 @@ public class CarFactory : MonoBehaviour
     {
         var car = GameObject.Instantiate(this.CarPrefab, position: this.transform.position, rotation: this.transform.rotation, parent: this.transform).gameObject;
 
+        yield return new WaitForSeconds(20f);
         var duration = Random.Range(2,5);
         yield return new WaitForSeconds(duration);
         GameObject.Destroy(car);
